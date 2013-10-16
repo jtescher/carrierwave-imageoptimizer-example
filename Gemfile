@@ -45,3 +45,5 @@ end
 # gem 'debugger', group: [:development, :test]
 gem 'carrierwave', '~> 0.9.0'
 gem 'carrierwave-imageoptimizer', '~> 1.0.1'
+
+gem 'mini_magick'
