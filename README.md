@@ -28,6 +28,7 @@ Add [carrierwave](https://github.com/carrierwaveuploader/carrierwave/) and
 ```bash
 $ echo "gem 'carrierwave', '~> 0.9.0'" >> Gemfile
 $ echo "gem 'carrierwave-imageoptimizer', '~> 1.0.1'" >> Gemfile
+$ echo "gem 'mini_magick'" >> Gemfile
 $ bundle install
 ```
 
@@ -41,13 +42,7 @@ $ bundle exec rake db:migrate
 ```
 
 Add CarrierWave::ImageOptimizer to the uploader `app/uploaders/avatar_uploader.rb`
-```ruby
-class AvatarUploader < CarrierWave::Uploader::Base
-  include CarrierWave::ImageOptimizer
-  process :optimize
-  ...  
-end
-```
+Code from [issue 4](https://github.com/jtescher/carrierwave-imageoptimizer/issues/4)
 
 Mount the uploader in User `app/models/user.rb`
 ```ruby
@@ -80,5 +75,4 @@ user.avatar = File.open('vendor/assets/images/dog.png')
 user.save!
 ```
 
-Check `public/uploads/user/avatar/1/dog.png` to see the optimized version 
-(328023 bytes to 204563 bytes 37.64% decrease in my case)
+Images seem to be only being optimzed once.
